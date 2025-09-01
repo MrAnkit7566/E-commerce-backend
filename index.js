@@ -33,10 +33,10 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(() => console.log("DB Connection Failed"));
 
-app.listen(5000, (err) => {
-  err
-    ? console.log("Server Not Connected")
-    : console.log("Server is Running at port 5000");
-});
+// app.listen(5000, (err) => {
+//   err
+//     ? console.log("Server Not Connected")
+//     : console.log("Server is Running at port 5000");
+// });
 
 
