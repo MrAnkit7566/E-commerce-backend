@@ -16,7 +16,11 @@ const cors = require('cors')
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",   // Or your frontend domain only
+  methods: ["GET", "POST", "PUT", "DELETE"],
+}));
+
 app.use(express.json());//Middleware
 app.use("/", userRoute)//Middleware
 
