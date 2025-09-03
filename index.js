@@ -1,7 +1,7 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const userRoute = require("./src/routes/route")
-const cors = require('cors')
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const userRoute = require("./src/routes/route")
+// const cors = require('cors')
 
 // let middleware1 = (req,res,next)=>{
 //   console.log("middleware1");
@@ -15,23 +15,23 @@ const cors = require('cors')
 // }
 
 
-const app = express();
-app.use(cors({
-  origin: "*",   // Or your frontend domain only
-  methods: ["GET", "POST", "PUT", "DELETE"],
-}));
+// const app = express();
+// app.use(cors({
+//   origin: "*",   // Or your frontend domain only
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+// }));
 
-app.use(express.json());//Middleware
-app.use("/", userRoute)//Middleware
+// app.use(express.json());//Middleware
+// app.use("/", userRoute)//Middleware
 
 
 
-mongoose
-  .connect(
-    "mongodb+srv://ankitdeepu910:123Ankit%40%23@cluster0.gfyomjd.mongodb.net/E-Commerce"
-  )
-  .then(() => console.log("MongoDB Connected"))
-  .catch(() => console.log("DB Connection Failed"));
+// mongoose
+//   .connect(
+//     "mongodb+srv://ankitdeepu910:123Ankit%40%23@cluster0.gfyomjd.mongodb.net/E-Commerce"
+//   )
+//   .then(() => console.log("MongoDB Connected"))
+//   .catch(() => console.log("DB Connection Failed"));
 
 // app.listen(5000, (err) => {
 //   err
@@ -40,3 +40,12 @@ mongoose
 // });
 
 
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, (err) => {
+  if (err) {
+    console.log("Server Not Connected");
+  } else {
+    console.log(`Server is Running at port ${PORT}`);
+  }
+});
