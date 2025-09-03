@@ -40,12 +40,35 @@
 // });
 
 
-const PORT = process.env.PORT || 5000;
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const userRoute = require("./src/routes/route"); // adjust path if needed
 
-app.listen(PORT, (err) => {
-  if (err) {
-    console.log("Server Not Connected");
-  } else {
-    console.log(`Server is Running at port ${PORT}`);
-  }
+const app = express();
+
+// Middleware
+app.use(cors({
+  origin: "*",   // You can restrict to your frontend domain instead of "*"
+  methods: ["GET", "POST", "PUT", "DELETE"],
+}));
+app.use(express.json());
+
+// Routes
+app.use("/", userRoute);
+
+// MongoDB Connection (use env variable)
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ DB Connection Failed", err));
+
+// Server Listen (Render requires process.env.PORT)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server is Running on port ${PORT}`);
 });
+
